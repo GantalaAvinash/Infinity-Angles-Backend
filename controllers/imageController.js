@@ -31,6 +31,44 @@ class ImageController {
     }
   }
 
+  // Upload profile images (avatar and cover)
+  static uploadProfileImage(req, res) {
+    try {
+      console.log('Profile image upload request received');
+      console.log('Request files:', req.files);
+      console.log('Processed images:', req.processedImages);
+      
+      if (!req.processedImages || req.processedImages.length === 0) {
+        console.log('No processed images found');
+        return res.status(400).json({
+          success: false,
+          message: 'No image uploaded'
+        });
+      }
+
+      // For profile images, we only expect one image at a time
+      const uploadedImage = req.processedImages[0];
+      console.log('Uploaded image:', uploadedImage);
+
+      res.status(201).json({
+        success: true,
+        data: {
+          imageUrl: uploadedImage.url,
+          imagePath: uploadedImage.path,
+          filename: uploadedImage.filename
+        },
+        message: 'Profile image uploaded successfully'
+      });
+    } catch (error) {
+      console.error('Error in uploadProfileImage:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error uploading profile image',
+        error: error.message
+      });
+    }
+  }
+
   // Get image by filename
   static async getImage(req, res) {
     try {

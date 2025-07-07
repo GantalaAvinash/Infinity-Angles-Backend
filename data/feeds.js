@@ -3,8 +3,35 @@ const { v4: uuidv4 } = require('uuid');
 // Sample feeds data
 const feeds = [
   {
+    "id": "cb824d87-80b9-430c-adc9-c2f46573bb4e",
+    "author": "Rama",
+    "authorRole": "krishna",
+    "timestamp": "now",
+    "content": "Good fellow",
+    "category": "Identification",
+    "likes": 0,
+    "comments": 0,
+    "tags": [
+      "Technical sounded"
+    ],
+    "images": [],
+    "createdAt": "2025-07-04T15:50:41.873Z",
+    "updatedAt": "2025-07-04T15:50:41.873Z"
+  },
+  {
     "id": "b001ca0f-8e0d-45d0-a355-c80dc5f797b1",
-    "author": "Venkatesh Mada",
+    "author": {
+      "_id": "user_venkatesh_mada",
+      "fullName": "Venkatesh Mada",
+      "username": "venkatesh_mada",
+      "avatar": "https://ui-avatars.com/api/?name=Venkatesh+Mada&background=667eea&color=fff&size=128&bold=true",
+      "bio": "Magazine editor passionate about design and engineering. Helping professionals discover the best tools for their craft.",
+      "location": "Bangalore, India",
+      "isVerified": true,
+      "followersCount": 2500,
+      "followingCount": 180,
+      "postsCount": 45
+    },
     "authorRole": "Magazine editor",
     "timestamp": "5 min ago",
     "content": "Millions of designers, engineers, and businesses around the world trust SOLIDWORKS to provide powerful, yet easy-to-use 2D and 3D product development solutions.",
@@ -45,7 +72,18 @@ const feeds = [
   },
   {
     "id": "717725d3-d5e9-4b6b-a4b8-09e5b8058ce6",
-    "author": "John Smith",
+    "author": {
+      "_id": "user_john_smith",
+      "fullName": "John Smith",
+      "username": "johnsmith_tech",
+      "avatar": "https://ui-avatars.com/api/?name=John+Smith&background=4ecdc4&color=fff&size=128&bold=true",
+      "bio": "Tech Lead passionate about innovation and product development. Building the future with cutting-edge technologies.",
+      "location": "San Francisco, CA",
+      "isVerified": false,
+      "followersCount": 890,
+      "followingCount": 220,
+      "postsCount": 23
+    },
     "authorRole": "Tech Lead",
     "timestamp": "10 min ago",
     "content": "Exploring the latest innovations in product development methodologies. The future of design is here!",
@@ -86,7 +124,18 @@ const feeds = [
   },
   {
     "id": "e89f1ea8-3986-4dd3-994f-575351d48ece",
-    "author": "Sarah Wilson",
+    "author": {
+      "_id": "user_sarah_wilson",
+      "fullName": "Sarah Wilson",
+      "username": "sarah_research",
+      "avatar": "https://ui-avatars.com/api/?name=Sarah+Wilson&background=f093fb&color=fff&size=128&bold=true",
+      "bio": "Research Analyst specializing in manufacturing technology and CAD innovations. Data-driven insights for better engineering.",
+      "location": "Seattle, WA",
+      "isVerified": true,
+      "followersCount": 1650,
+      "followingCount": 95,
+      "postsCount": 67
+    },
     "authorRole": "Research Analyst",
     "timestamp": "15 min ago",
     "content": "New research shows significant improvements in manufacturing efficiency with modern CAD tools.",
@@ -141,7 +190,18 @@ const feeds = [
   },
   {
     "id": "2d2f2f92-53d1-4854-99c5-3dc2cc2ef404",
-    "author": "Mike Johnson",
+    "author": {
+      "_id": "user_mike_johnson",
+      "fullName": "Mike Johnson",
+      "username": "mike_ux",
+      "avatar": "https://ui-avatars.com/api/?name=Mike+Johnson&background=a8e6cf&color=333&size=128&bold=true",
+      "bio": "UX Designer creating beautiful and intuitive experiences. Design thinking enthusiast and user advocate.",
+      "location": "Austin, TX",
+      "isVerified": false,
+      "followersCount": 3200,
+      "followingCount": 450,
+      "postsCount": 89
+    },
     "authorRole": "UX Designer",
     "timestamp": "20 min ago",
     "content": "User experience is at the heart of every successful product. Today we're diving deep into design thinking methodologies.",

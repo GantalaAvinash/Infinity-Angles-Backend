@@ -38,26 +38,81 @@ const upload = multer({
   storage: storage,
   limits: {
     fileSize: config.images.maxFileSize,
-    files: config.feeds.maxImagesPerFeed
+    files: config.posts.maxImagesPerPost
   },
   fileFilter: fileFilter
 });
 
 // Middleware for single image upload
-const uploadSingle = upload.single('image');
+const uploadSingle = (req, res, next) => {
+  console.log('📁 Upload middleware called');
+  console.log('📋 Content-Type:', req.headers['content-type']);
+  console.log('📏 Content-Length:', req.headers['content-length']);
+  
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      console.error('❌ Multer error:', err);
+      if (err instanceof multer.MulterError) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+          return res.status(400).json({
+            success: false,
+            message: 'File too large'
+          });
+        }
+        if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+          return res.status(400).json({
+            success: false,
+            message: 'Unexpected file field'
+          });
+        }
+      }
+      return res.status(400).json({
+        success: false,
+        message: err.message || 'File upload error'
+      });
+    }
+    
+    console.log('✅ Multer processing completed');
+    console.log('📁 File uploaded:', !!req.file);
+    if (req.file) {
+      console.log('📄 File details:', {
+        fieldname: req.file.fieldname,
+        originalname: req.file.originalname,
+        mimetype: req.file.mimetype,
+        size: req.file.size
+      });
+    }
+    next();
+  });
+};
 
 // Middleware for multiple image upload
-const uploadMultiple = upload.array('images', config.feeds.maxImagesPerFeed);
+const uploadMultiple = upload.array('images', config.posts.maxImagesPerPost);
 
 // Image processing middleware
 const processImage = async (req, res, next) => {
   try {
+    // Initialize processedImages array
+    req.processedImages = [];
+    
     if (!req.file && !req.files) {
+      console.log('📂 No files to process, continuing...');
       return next();
     }
 
     const files = req.files || [req.file];
+    console.log('🖼️ Processing', files.length, 'image(s)');
+    
     const processedImages = [];
+
+    // Construct base URL once for all images - use request host
+    const protocol = req.protocol;
+    const host = req.get('host');
+    
+    // Keep the original host for the URL so mobile devices can access images
+    // Don't change localhost to network IP - let adb reverse handle it
+    const baseUrl = `${protocol}://${host}`;
+    console.log('🌐 Image URL base:', baseUrl);
 
     for (const file of files) {
       const imagePath = file.path;
@@ -82,7 +137,7 @@ const processImage = async (req, res, next) => {
           .toFile(thumbnailPath);
 
         thumbnails[size] = {
-          url: `/uploads/images/${filename}_${size}${extension}`,
+          url: `${baseUrl}/uploads/images/${filename}_${size}${extension}`,
           width: dimensions.width,
           height: dimensions.height
         };
@@ -91,13 +146,16 @@ const processImage = async (req, res, next) => {
       // Get image metadata
       const metadata = await sharp(imagePath).metadata();
 
+      // Construct full URL for the image
+      const imageUrl = `${baseUrl}/uploads/images/${file.filename}`;
+
       processedImages.push({
         id: uuidv4(),
         filename: file.filename,
         originalName: file.originalname,
         mimeType: file.mimetype,
         size: file.size,
-        url: `/uploads/images/${file.filename}`,
+        url: imageUrl,
         thumbnails: thumbnails,
         metadata: {
           width: metadata.width,
@@ -117,7 +175,15 @@ const processImage = async (req, res, next) => {
 
 // Error handling middleware for multer
 const handleUploadError = (error, req, res, next) => {
+  console.error('Image upload error:', error);
+  
   if (error instanceof multer.MulterError) {
+    console.error('Multer error details:', {
+      code: error.code,
+      field: error.field,
+      message: error.message
+    });
+    
     if (error.code === 'LIMIT_FILE_SIZE') {
       return res.status(400).json({
         success: false,
@@ -128,25 +194,26 @@ const handleUploadError = (error, req, res, next) => {
     if (error.code === 'LIMIT_FILE_COUNT') {
       return res.status(400).json({
         success: false,
-        message: `Too many files. Maximum: ${config.feeds.maxImagesPerFeed} images`
+        message: `Too many files. Maximum: ${config.posts.maxImagesPerPost} images`
       });
     }
     
     if (error.code === 'LIMIT_UNEXPECTED_FILE') {
       return res.status(400).json({
         success: false,
-        message: 'Unexpected field name for file upload'
+        message: 'Unexpected field name for file upload. Expected field name: "images"'
       });
     }
   }
 
-  if (error.message.includes('Invalid file type')) {
+  if (error.message && error.message.includes('Invalid file type')) {
     return res.status(400).json({
       success: false,
       message: error.message
     });
   }
 
+  console.error('Unknown upload error:', error);
   next(error);
 };
 
