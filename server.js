@@ -1,7 +1,16 @@
+// Load environment variables
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+
+// Debug: Log environment variables
+console.log('🔍 Environment Debug Info:');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('MONGODB_URI:', process.env.MONGODB_URI ? '***CONFIGURED***' : 'NOT SET');
+console.log('PORT:', process.env.PORT);
 
 // Import database connection
 const Database = require('./config/database');
