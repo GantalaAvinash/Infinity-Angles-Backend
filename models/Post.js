@@ -75,7 +75,7 @@ const postSchema = new mongoose.Schema({
   expiresAt: {
     type: Date,
     default: Date.now,
-    expires: 86400 // 24 hours in seconds (MongoDB TTL)
+    index: { expireAfterSeconds: 86400 } // 24 hours TTL index
   }
 }, {
   timestamps: true,
@@ -87,7 +87,7 @@ const postSchema = new mongoose.Schema({
 postSchema.index({ author: 1, createdAt: -1 });
 postSchema.index({ category: 1, createdAt: -1 });
 postSchema.index({ createdAt: -1 });
-postSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 }); // TTL index
+// TTL index already defined in schema field definition
 
 // Virtual for comments
 postSchema.virtual('comments', {
