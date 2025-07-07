@@ -2,8 +2,8 @@ module.exports = {
   apps: [{
     name: 'infinity-angles-backend',
     script: 'server.js',
-    instances: 'max',
-    exec_mode: 'cluster',
+    instances: 1, // Use single instance for better reliability
+    exec_mode: 'fork', // Use fork mode instead of cluster
     env: {
       NODE_ENV: 'development',
       PORT: 3000

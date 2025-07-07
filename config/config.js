@@ -13,11 +13,13 @@ const config = {
     uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/infinity_angles',
     testUri: process.env.MONGODB_TEST_URI || 'mongodb://localhost:27017/infinity_angles_test',
     options: {
-      // Removed deprecated options useNewUrlParser and useUnifiedTopology
+      // Only use supported options for current MongoDB driver
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
-      bufferMaxEntries: 0
+      connectTimeoutMS: 10000,
+      heartbeatFrequencyMS: 10000,
+      maxIdleTimeMS: 30000
     }
   },
 
