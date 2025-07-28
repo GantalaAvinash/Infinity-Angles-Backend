@@ -23,18 +23,35 @@ const upload = multer({ storage });
 
 router.post('/', upload.single('image'), async (req, res) => {
   try {
+    console.log('Upload request received:', {
+      hasFile: !!req.file,
+      headers: req.headers,
+      body: req.body
+    });
+    
     if (!req.file) {
+      console.log('No file in request');
       return res.status(400).json({ 
         success: false,
         error: 'No file uploaded' 
       });
     }
 
+    console.log('File details:', {
+      filename: req.file.filename,
+      originalname: req.file.originalname,
+      mimetype: req.file.mimetype,
+      size: req.file.size,
+      path: req.file.path
+    });
+
     // Local upload only for testing
     // Use the correct host for React Native development
     const host = req.get('host');
-    const publicHost = host === 'localhost:3000' ? '192.168.1.7:3000' : host;
+    const publicHost = host === 'localhost:3000' ? '192.168.1.4:3000' : host;
     const url = `${req.protocol}://${publicHost}/uploads/${req.file.filename}`;
+    
+    console.log('Generated URL:', url);
     
     return res.json({ 
       success: true,

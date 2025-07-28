@@ -12,7 +12,6 @@ const userSchema = new Schema<IUser>({
     minLength: [3, 'Username must be at least 3 characters long'],
     maxLength: [30, 'Username must be less than 30 characters'],
     match: [/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscores'],
-    index: true,
   },
   email: {
     type: String,
@@ -24,7 +23,6 @@ const userSchema = new Schema<IUser>({
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
       'Please provide a valid email address',
     ],
-    index: true,
   },
   password: {
     type: String,
@@ -158,9 +156,7 @@ const userSchema = new Schema<IUser>({
   },
 });
 
-// Indexes
-userSchema.index({ email: 1 }, { unique: true });
-userSchema.index({ username: 1 }, { unique: true });
+// Indexes (email and username indexes are automatically created by unique: true)
 userSchema.index({ 'metadata.lastLogin': -1 });
 userSchema.index({ isActive: 1, role: 1 });
 userSchema.index({ createdAt: -1 });

@@ -12,7 +12,6 @@ const postSchema = new Schema<IPost>({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    index: true,
   },
   images: [{
     type: String,
@@ -104,14 +103,6 @@ postSchema.index({
   }
 });
 
-// Indexes
-postSchema.index({ author: 1, createdAt: -1 });
-postSchema.index({ createdAt: -1 });
-postSchema.index({ tags: 1 });
-postSchema.index({ 'status.isPublished': 1, 'status.isDraft': 1 });
-postSchema.index({ 'metadata.likesCount': -1 });
-postSchema.index({ 'metadata.createdAt': -1 });
-postSchema.index({ 'location.coordinates': '2dsphere' });
 postSchema.pre('save', async function(next) {
   if (this.isNew && !this.status.isDraft) {
     try {

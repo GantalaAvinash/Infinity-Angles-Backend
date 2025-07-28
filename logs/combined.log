@@ -1,0 +1,52 @@
+{"level":"info","message":"Environment configuration validated successfully","timestamp":"2025-07-16 09:39:51:3951"}
+{"level":"info","message":"Middleware initialized successfully","timestamp":"2025-07-16 09:39:51:3951"}
+{"level":"info","message":"Routes initialized successfully","timestamp":"2025-07-16 09:39:51:3951"}
+{"level":"info","message":"Error handling initialized successfully","timestamp":"2025-07-16 09:39:51:3951"}
+{"level":"info","message":"Connecting to MongoDB...","timestamp":"2025-07-16 09:39:51:3951","uri":"mongodb+srv://gantalaavinash:****@cluster0.igo3u.mongodb.net/infinity_angles_new?retryWrites=true&w=majority&appName=Cluster0"}
+{"host":"cluster0-shard-00-00.igo3u.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"infinity_angles_new","port":27017,"readyState":1,"timestamp":"2025-07-16 09:39:52:3952"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-07-16 09:39:52:3952"}
+{"level":"info","message":"🎉 Application started successfully","timestamp":"2025-07-16 09:39:52:3952"}
+{"level":"info","message":"🚀 Server running on port 3000 in production mode","timestamp":"2025-07-16 09:39:52:3952"}
+{"level":"info","message":"📚 Health check available at http://localhost:3000/api/health","timestamp":"2025-07-16 09:39:52:3952"}
+{"level":"info","message":"Received shutdown signal, closing database connection...","timestamp":"2025-07-16 09:46:59:4659"}
+{"level":"info","message":"Environment configuration validated successfully","timestamp":"2025-07-16 09:47:00:470"}
+{"level":"info","message":"Middleware initialized successfully","timestamp":"2025-07-16 09:47:00:470"}
+{"level":"info","message":"Routes initialized successfully","timestamp":"2025-07-16 09:47:00:470"}
+{"level":"info","message":"Error handling initialized successfully","timestamp":"2025-07-16 09:47:00:470"}
+{"level":"info","message":"Connecting to MongoDB...","timestamp":"2025-07-16 09:47:00:470","uri":"mongodb+srv://gantalaavinash:****@cluster0.igo3u.mongodb.net/infinity_angles_new?retryWrites=true&w=majority&appName=Cluster0"}
+{"host":"cluster0-shard-00-00.igo3u.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"infinity_angles_new","port":27017,"readyState":1,"timestamp":"2025-07-16 09:47:01:471"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-07-16 09:47:01:471"}
+{"level":"info","message":"🎉 Application started successfully","timestamp":"2025-07-16 09:47:01:471"}
+{"level":"info","message":"🚀 Server running on port 3000 in production mode","timestamp":"2025-07-16 09:47:01:471"}
+{"level":"info","message":"📚 Health check available at http://localhost:3000/api/health","timestamp":"2025-07-16 09:47:01:471"}
+{"level":"info","message":"Received shutdown signal, closing database connection...","timestamp":"2025-07-16 09:47:30:4730"}
+{"level":"info","message":"Environment configuration validated successfully","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"Middleware initialized successfully","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"Routes initialized successfully","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"Error handling initialized successfully","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"Connecting to MongoDB...","timestamp":"2025-07-16 09:47:32:4732","uri":"mongodb+srv://gantalaavinash:****@cluster0.igo3u.mongodb.net/infinity_angles_new?retryWrites=true&w=majority&appName=Cluster0"}
+{"host":"cluster0-shard-00-00.igo3u.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"infinity_angles_new","port":27017,"readyState":1,"timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"🎉 Application started successfully","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"🚀 Server running on port 3000 in production mode","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"📚 Health check available at http://localhost:3000/api/health","timestamp":"2025-07-16 09:47:32:4732"}
+{"level":"info","message":"Environment configuration validated successfully","timestamp":"2025-07-28 20:49:19:4919"}
+{"level":"info","message":"Middleware initialized successfully","timestamp":"2025-07-28 20:49:19:4919"}
+{"level":"info","message":"Routes initialized successfully","timestamp":"2025-07-28 20:49:19:4919"}
+{"level":"info","message":"Error handling initialized successfully","timestamp":"2025-07-28 20:49:19:4919"}
+{"level":"info","message":"Connecting to MongoDB...","timestamp":"2025-07-28 20:49:19:4919","uri":"mongodb+srv://gantalaavinash:****@cluster0.igo3u.mongodb.net/infinity_angles_new?retryWrites=true&w=majority&appName=Cluster0"}
+{"host":"cluster0-shard-00-00.igo3u.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"infinity_angles_new","port":27017,"readyState":1,"timestamp":"2025-07-28 20:49:20:4920"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-07-28 20:49:20:4920"}
+{"level":"info","message":"🎉 Application started successfully","timestamp":"2025-07-28 20:49:20:4920"}
+{"level":"info","message":"🚀 Server running on port 3000 in production mode","timestamp":"2025-07-28 20:49:20:4920"}
+{"level":"info","message":"📚 Health check available at http://localhost:3000/api/health","timestamp":"2025-07-28 20:49:20:4920"}
+{"level":"info","message":"Environment configuration validated successfully","timestamp":"2025-07-28 20:50:18:5018"}
+{"level":"info","message":"Middleware initialized successfully","timestamp":"2025-07-28 20:50:18:5018"}
+{"level":"info","message":"Routes initialized successfully","timestamp":"2025-07-28 20:50:18:5018"}
+{"level":"info","message":"Error handling initialized successfully","timestamp":"2025-07-28 20:50:18:5018"}
+{"level":"info","message":"Connecting to MongoDB...","timestamp":"2025-07-28 20:50:18:5018","uri":"mongodb+srv://gantalaavinash:****@cluster0.igo3u.mongodb.net/infinity_angles_new?retryWrites=true&w=majority&appName=Cluster0"}
+{"host":"cluster0-shard-00-00.igo3u.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"infinity_angles_new","port":27017,"readyState":1,"timestamp":"2025-07-28 20:50:19:5019"}
+{"level":"info","message":"Database connected successfully","timestamp":"2025-07-28 20:50:19:5019"}
+{"level":"info","message":"🎉 Application started successfully","timestamp":"2025-07-28 20:50:19:5019"}
+{"level":"info","message":"🚀 Server running on port 3000 in production mode","timestamp":"2025-07-28 20:50:19:5019"}
+{"level":"info","message":"📚 Health check available at http://localhost:3000/api/health","timestamp":"2025-07-28 20:50:19:5019"}
