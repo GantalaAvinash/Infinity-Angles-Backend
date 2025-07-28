@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { AuthenticatedRequest, ServiceResponse } from '@/types';
 import { ResponseUtils } from '@/utils/response';
 import { JwtUtils } from '@/utils/jwt';
-import { logAuthEvent, logBusinessEvent, logError } from '@/utils/logger';
+import { logAuthEvent, logBusinessEvent, logError, logger } from '@/utils/logger';
 import { AppError, asyncHandler } from '@/middleware/errorHandler';
 import User from '@/models/User';
 import { validationResult } from 'express-validator';
@@ -89,6 +89,11 @@ export class AuthController {
   static login = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      logger.warn('Login validation failed', {
+        errors: errors.array(),
+        body: req.body,
+        ip: req.ip,
+      });
       ResponseUtils.validationError(res, errors.array());
       return;
     }

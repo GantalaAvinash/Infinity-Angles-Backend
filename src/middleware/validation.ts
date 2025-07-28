@@ -16,11 +16,25 @@ export const handleValidationErrors = (
   const errors = validationResult(req);
   
   if (!errors.isEmpty()) {
-    const formattedErrors = errors.array().map(error => ({
-      field: error.type === 'field' ? (error as any).path : 'unknown',
-      message: error.msg,
-      value: error.type === 'field' ? (error as any).value : undefined,
-    }));
+    const formattedErrors = errors.array().map(error => {
+      // Handle different error types safely
+      let field = 'unknown';
+      let value: any = undefined;
+      
+      if ('path' in error && typeof error.path === 'string') {
+        field = error.path;
+      }
+      
+      if ('value' in error) {
+        value = error.value;
+      }
+      
+      return {
+        field,
+        message: error.msg,
+        value,
+      };
+    });
 
     logger.warn('Validation failed', {
       url: req.originalUrl,
