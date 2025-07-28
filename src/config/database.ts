@@ -177,40 +177,17 @@ class Database {
     return await this.connection.db.admin().serverStatus();
   }
 
-  // Index management
+  // Index management - Indexes are automatically created by Mongoose schemas
   public async createIndexes(): Promise<void> {
     try {
-      logger.info('Creating database indexes...');
-
-      // User indexes
-      await mongoose.model('User').collection.createIndex({ email: 1 }, { unique: true });
-      await mongoose.model('User').collection.createIndex({ username: 1 }, { unique: true });
-      await mongoose.model('User').collection.createIndex({ 'metadata.lastLogin': -1 });
-
-      // Post indexes
-      await mongoose.model('Post').collection.createIndex({ author: 1, createdAt: -1 });
-      await mongoose.model('Post').collection.createIndex({ createdAt: -1 });
-      await mongoose.model('Post').collection.createIndex({ tags: 1 });
-      await mongoose.model('Post').collection.createIndex({ 'location.coordinates': '2dsphere' });
-
-      // Comment indexes
-      await mongoose.model('Comment').collection.createIndex({ post: 1, createdAt: -1 });
-      await mongoose.model('Comment').collection.createIndex({ author: 1 });
-
-      // Follow indexes
-      await mongoose.model('Follow').collection.createIndex({ follower: 1, following: 1 }, { unique: true });
-      await mongoose.model('Follow').collection.createIndex({ following: 1 });
-
-      // Like indexes
-      await mongoose.model('Like').collection.createIndex({ user: 1, target: 1, targetType: 1 }, { unique: true });
-
-      // Notification indexes
-      await mongoose.model('Notification').collection.createIndex({ recipient: 1, createdAt: -1 });
-      await mongoose.model('Notification').collection.createIndex({ recipient: 1, isRead: 1 });
-
-      logger.info('Database indexes created successfully');
+      logger.info('Database indexes are automatically managed by Mongoose schemas');
+      
+      // Only create indexes for models that don't have schema definitions
+      // All other indexes are automatically created by Mongoose from schema definitions
+      
+      logger.info('Database index management completed');
     } catch (error) {
-      logger.error('Error creating indexes:', error);
+      logger.error('Error with index management:', error);
       // Don't throw error for index creation failures in production
       if (config.NODE_ENV === 'development') {
         throw error;

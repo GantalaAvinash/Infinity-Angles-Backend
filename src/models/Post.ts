@@ -85,9 +85,8 @@ const postSchema = new Schema<IPost>({
 postSchema.index({ author: 1, createdAt: -1 });
 postSchema.index({ createdAt: -1 });
 postSchema.index({ tags: 1 });
-postSchema.index({ isPublic: 1, isDraft: 1 });
+postSchema.index({ 'status.isPublished': 1, 'status.isDraft': 1 });
 postSchema.index({ 'metadata.likesCount': -1 });
-postSchema.index({ 'metadata.createdAt': -1 });
 postSchema.index({ 'location.coordinates': '2dsphere' });
 
 // Text search index
@@ -140,8 +139,8 @@ postSchema.statics.getTrending = async function(limit: number = 10, timeframe: n
   since.setDate(since.getDate() - timeframe);
 
   return this.find({
-    isPublic: true,
-    isDraft: false,
+    'status.isPublished': true,
+    'status.isDraft': false,
     createdAt: { $gte: since }
   })
   .sort({
@@ -161,8 +160,8 @@ postSchema.statics.getNearby = async function(
   limit: number = 20
 ) {
   return this.find({
-    isPublic: true,
-    isDraft: false,
+    'status.isPublished': true,
+    'status.isDraft': false,
     'location.coordinates': {
       $near: {
         $geometry: {
@@ -197,8 +196,8 @@ postSchema.statics.search = async function(
   } = options;
 
   const searchQuery: any = {
-    isPublic: true,
-    isDraft: false,
+    'status.isPublished': true,
+    'status.isDraft': false,
     $text: { $search: query }
   };
 

@@ -117,7 +117,6 @@ const userSchema = new Schema<IUser>({
     lastLogin: {
       type: Date,
       default: Date.now,
-      index: true,
     },
     loginCount: {
       type: Number,
